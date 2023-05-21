@@ -1,0 +1,14 @@
+.inputField {
+  width: 300px;
+  margin: 10px;
+}
+
+.error {
+  width: 300px;
+  margin: 0 10px;
+  background-color: red;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+  padding: 5px;
+}
