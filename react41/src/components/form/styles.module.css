@@ -1,9 +1,0 @@
-.fullName {
-  display: flex;
-  flex-direction: column;
-}
-
-.submitButton {
-  width: 300px;
-  margin: 10px;
-}

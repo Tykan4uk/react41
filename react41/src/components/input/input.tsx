@@ -1,20 +1,30 @@
+import { ReactNode } from "react";
+import { ErrorMessage, useFormikContext } from "formik";
+import { IFormValues } from "../customForm/customForm";
+
 import styles from "./styles.module.css";
 
 interface InputProps {
-  name: string,
-  placeholder: string,
-  errorMessage: string,
-  errorShow: boolean
+  name: keyof IFormValues,
+  label: string,
+  children: ReactNode
 }
 
-export const Input = ({ name, placeholder, errorMessage, errorShow }: InputProps) => {
+export const Input = ({ name, label, children }: InputProps) => {
+  const { errors } = useFormikContext<IFormValues>();
+  const isValid = !errors[name];
+
   return (
     <>
-      <input className={styles['inputField']}
-        type="text"
+      <div className={styles[isValid ? "validBorder" : "invalidBorder"]}>
+        <label className={styles["label"]}>{label}</label>
+        {children}
+      </div >
+      <ErrorMessage
         name={name}
-        placeholder={placeholder} />
-      {errorShow && <span className={styles['error']}>{errorMessage}</span>}
+        component="div"
+        className={styles["error"]}
+      />
     </>
   )
 }
